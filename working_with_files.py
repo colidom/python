@@ -26,20 +26,20 @@ interbox = ('C:\\Users\\A704806\\Desktop\\MONITORIZACION\\dejar\\INTERBOX')
 
 for filename in os.listdir(srcpath):
     root, ext = os.path.splitext(filename)
-    if filename.__contains__('_AMAZON_'):
+    if '_AMAZON_' in filename:
         shutil.move(os.path.join(srcpath, filename), amazon)
-    elif filename.__contains__('_TRAN'):
+    elif '_TRAN_' in filename:
         shutil.move(os.path.join(srcpath, filename), tran)
-    elif filename.__contains__('_ICP_WS_'):
+    elif '_ICP_WS_' in filename:
         shutil.move(os.path.join(srcpath, filename), icp)
-    elif filename.__contains__('UNICO'):
+    elif 'UNICO' in filename:
         shutil.move(os.path.join(srcpath, filename), unico)
-    elif filename.__contains__('OPENBANK'):
+    elif 'OPENBANK' in filename:
         shutil.move(os.path.join(srcpath, filename), openbank)
-    elif filename.__contains__('EMSEVT'):
+    elif 'EMSEVT' in filename:
         shutil.move(os.path.join(srcpath, filename), emsevt)
-    elif filename.__contains__('EVT'):
+    elif 'EVT' in filename:
         shutil.move(os.path.join(srcpath, filename), evt)
-    elif filename.__contains__('INTERBOX'):
+    elif 'INTERBOX' in filename:
         shutil.move(os.path.join(srcpath, filename), interbox)
 
