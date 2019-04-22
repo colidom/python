@@ -28,7 +28,7 @@ for filename in os.listdir(srcpath):
     root, ext = os.path.splitext(filename)
     if '_AMAZON_' in filename:
         shutil.move(os.path.join(srcpath, filename), amazon)
-    elif '_TRAN_' in filename:
+    elif '_TRAN' in filename:
         shutil.move(os.path.join(srcpath, filename), tran)
     elif '_ICP_WS_' in filename:
         shutil.move(os.path.join(srcpath, filename), icp)
