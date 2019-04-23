@@ -6,9 +6,9 @@ import os
 import shutil
 
 # Ruta actual de los ficheros de entrada
-os.chdir('C:\\Users\\A704806\\Desktop\\MONITORIZACION\\dejar')
-srcpath = ('C:\\Users\\A704806\\Desktop\\MONITORIZACION\\coger')
-dest = ('C:\\Users\\A704806\\Desktop\\files\\')
+srcpath = input('Por favor indique la ruta de los ficheros de entrada: ')or 'C:\\Users\\A704806\\Desktop\\MONITORIZACION\\coger'
+dest = input('Por favor indica la ruta para dejar los ficheros: ') or 'C:\\Users\\A704806\\Desktop\\MONITORIZACION\\dejar'
+os.chdir(dest)
 
 #Comprobamos los tópicos en los archivos y creamos las correspondientes carpetas
 for f in os.listdir(srcpath):
@@ -16,8 +16,6 @@ for f in os.listdir(srcpath):
     foldername = splitname[2]
     if not os.path.exists(foldername):
         os.mkdir(foldername)
-
-
 
 # #COPIAMOS los ficheros a su carpeta correspondiente
 for filename in os.listdir(srcpath):
