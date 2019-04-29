@@ -3,3 +3,5 @@
 .idea/python.iml
 .idea/modules.xml
 .idea/misc.xml
+
+venv/
