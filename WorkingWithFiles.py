@@ -22,10 +22,13 @@ print('Clasificando ficheros...')
 os.chdir(dest)
 
 # Create folders by file name, and then move the files to the corresponding folder
-for f in os.listdir(srcpath):
-    splitname = f.split('_')
-    foldername = splitname[2]
-    if not os.path.exists(foldername):
-        os.mkdir(foldername)
-    shutil.move(os.path.join(srcpath, f), foldername)
+def clasifica():
+    for f in os.listdir(srcpath):
+        splitname = f.split('_')
+        foldername = splitname[2]
+        if not os.path.exists(foldername):
+            os.mkdir(foldername)
+        shutil.move(os.path.join(srcpath, f), foldername)
+    return
+clasifica()
 print('¡Finalizado!')
