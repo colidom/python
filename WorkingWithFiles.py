@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # @author Carlos
-# v2.0
+# v3.0
 # Importing  modules
 import os
 import shutil
@@ -25,10 +25,12 @@ os.chdir(dest)
 def clasifica():
     for f in os.listdir(srcpath):
         splitname = f.split('_')
+        status = splitname[1]
         foldername = splitname[2]
-        if not os.path.exists(foldername):
+        folder = foldername + '_' + status
+        if not os.path.exists(folder):
             os.mkdir(foldername)
-        shutil.move(os.path.join(srcpath, f), foldername)
-    return
+        shutil.move(os.path.join(srcpath, f), folder)
+
 clasifica()
 print('¡Finalizado!')
