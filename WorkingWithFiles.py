@@ -1,36 +1,38 @@
 #!/usr/bin/python3
 # @author Carlos
-# v3.0
+# v3.1
 # Importing  modules
 import os
 import shutil
 import sys
 
-# Path for input and output files
-srcpath = input('Por favor indique la ruta de los ficheros de entrada: ')
-dest = input('Por favor indique la ruta para dejar los ficheros: ')
+# Path of input and output files
+src = input('Please indicate the path of the input files: ')
+dest = input('Please indicate the path to leave the files: ')
 
-if srcpath:
-    print('La ruta de entrada es: ' + srcpath)
+if src:
+    print('The route of entry is: ' + src)
 else:
-    sys.exit('¡Debe indicar una ruta de entrada! Finalizando programa...')
+    sys.exit('¡You must enter an inbound route! Ending program...')
 if dest:
-     print('La ruta de salida es: ' + dest)
+    print('The exit route is: ' + dest)
 else:
-    sys.exit('¡Debe indicar una ruta de salida! Finalizando programa...')
-print('Clasificando ficheros...')
+    sys.exit('¡You must indicate an exit route! Ending program...')
+
 os.chdir(dest)
 
-# Create folders by file name, and then move the files to the corresponding folder
-def clasifica():
-    for f in os.listdir(srcpath):
+
+# Creates folders by file name, and then moves the files to the corresponding folder
+def classify():
+    for f in os.listdir(src):
         splitname = f.split('_')
         status = splitname[1]
-        foldername = splitname[2]
-        folder = foldername + '_' + status
-        if not os.path.exists(folder):
+        topic = splitname[2]
+        foldername = topic + '_' + 'Estado_' + status
+        if not os.path.exists(foldername):
             os.mkdir(foldername)
-        shutil.move(os.path.join(srcpath, f), folder)
+        shutil.move(os.path.join(src, f), foldername)
 
-clasifica()
-print('¡Finalizado!')
+print('Sorting out files, please wait...')
+classify()
+print('¡DONE!')
