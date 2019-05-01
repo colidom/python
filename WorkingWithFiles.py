@@ -34,6 +34,7 @@ def classify():
             os.mkdir(foldername)
         shutil.move(os.path.join(src, f), foldername)
 
+
 print('Sorting out files, please wait...')
 classify()
 print('¡DONE!')
