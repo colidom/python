@@ -1,5 +1,5 @@
-# coding: utf8
 # !/usr/bin/python3
+# coding: utf8
 # @author Bulls90
 # v3.1
 # Importing  modules
