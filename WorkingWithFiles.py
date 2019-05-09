@@ -28,10 +28,18 @@ def classify():
         splitname = f.split('_')
         status = splitname[1]
         topic = splitname[2]
-        foldername = topic + '_' + 'Estado_' + status
+        foldername = topic + '_' + 'Status_' + status
+        msgName = 'Message_0'
+        newFileName = foldername + '\\' + msgName + '.xml'
         if not os.path.exists(foldername):
             os.mkdir(foldername)
-        shutil.move(os.path.join(src, f), foldername)
+        else:
+            while os.path.isfile(newFileName) is True:
+                msgInt = int(msgName[8:])
+                msgInt += 1
+                msgName = msgName[:8] + str(msgInt)
+                newFileName = foldername + '\\' + msgName + '.xml'
+        shutil.move(os.path.join(src, f), newFileName)
 
 print('Sorting out files, please wait...')
 classify()
