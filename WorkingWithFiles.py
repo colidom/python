@@ -1,5 +1,6 @@
-#!/usr/bin/python3
-# @author Carlos
+# !/usr/bin/python3
+# coding: utf8
+# @author Bulls90
 # v3.1
 # Importing  modules
 import os
@@ -40,6 +41,7 @@ def classify():
                 msgName = msgName[:8] + str(msgInt)
                 newFileName = foldername + '\\' + msgName + '.xml'
         shutil.move(os.path.join(src, f), newFileName)
+
 
 print('Sorting out files, please wait...')
 classify()
