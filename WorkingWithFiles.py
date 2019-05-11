@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v4.0
+# v4.1
 # Importing  modules
 import os
 import shutil
@@ -41,7 +41,7 @@ def classify_new_name():
                 msgInt += 1
                 msgName = msgName[:8] + str(msgInt)
                 newFileName = foldername + '\\' + msgName + '.xml'
-        shutil.copy(os.path.join(src, f), newFileName)
+        shutil.move(os.path.join(src, f), newFileName)
 
 
 # Creates folders by file name, and then moves the files to the corresponding folder keeping original filenames.
@@ -54,7 +54,7 @@ def classify():
         foldername = topic + '_' + 'Status_' + status
         if not os.path.exists(foldername):
             os.mkdir(foldername)
-        shutil.copy(os.path.join(src, f), foldername)
+        shutil.move(os.path.join(src, f), foldername)
 
 
 def question():
