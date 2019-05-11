@@ -81,7 +81,7 @@ Chosen option:""") + option())
             question()
         elif option == 'c':
             sys.exit('Closing tool...See you later.!')
-        elif option != 'a' or 'b' or 'c':
+        else:
             print("""
  !!!!!!!!!!!!!!!!!!!!!!!!!
 ! INCORRECT VALUE ENTERED !
