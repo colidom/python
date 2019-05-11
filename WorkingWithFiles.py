@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v3.1
+# v4.1
 # Importing  modules
 import os
 import shutil
@@ -11,20 +11,21 @@ import sys
 src = input('Please indicate the path of the input files: ')
 dest = input('Please indicate the path to leave the files: ')
 
-if src:
-    print('The route of entry is: ' + src)
-else:
-    sys.exit('¡You must enter an inbound route! Ending program...')
-if dest:
-    print('The exit route is: ' + dest)
-else:
-    sys.exit('¡You must indicate an exit route! Ending program...')
+if src == '':
+    sys.exit("""
+*******************************************************
+* ¡You must indicate a source path! Ending program... *
+*******************************************************""")
+if dest == '':
+    sys.exit("""
+************************************************************
+* ¡You must indicate a destination path! Ending program... *
+************************************************************""")
 
-os.chdir(dest)
 
-
-# Creates folders by file name, and then moves the files to the corresponding folder
-def classify():
+# Creates folders by file name, and then moves the files to the corresponding folder changing filenames.
+def classify_new_name():
+    os.chdir(dest)
     for f in os.listdir(src):
         splitname = f.split('_')
         status = splitname[1]
@@ -43,6 +44,49 @@ def classify():
         shutil.move(os.path.join(src, f), newFileName)
 
 
-print('Sorting out files, please wait...')
-classify()
-print('¡DONE!')
+# Creates folders by file name, and then moves the files to the corresponding folder keeping original filenames.
+def classify():
+    os.chdir(dest)
+    for f in os.listdir(src):
+        splitname = f.split('_')
+        status = splitname[1]
+        topic = splitname[2]
+        foldername = topic + '_' + 'Status_' + status
+        if not os.path.exists(foldername):
+            os.mkdir(foldername)
+        shutil.move(os.path.join(src, f), foldername)
+
+
+def question():
+    option = str
+    option = (input("""
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Choose one of the following options:   |                                            
+|  (a) Keeping original file name       |
+|  (b) Rename files                     |
+|  (c) Exit                             |  
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Chosen option:""") + option())
+    if option == 'a':
+        print('Sorting out keeping the original name of the files, please wait...')
+        classify()
+        print('¡Finalizado!')
+    elif option == 'b':
+        print('Shorting out and renaming file names, please wait...')
+        classify_new_name()
+        print('¡Done!')
+    else:
+        if option == '':
+            print('¡ERROR! No option has been chosen')
+            question()
+        elif option == 'c':
+            sys.exit('Closing tool...See you later.!')
+        elif option != 'a' or 'b' or 'c':
+            print("""
+ !!!!!!!!!!!!!!!!!!!!!!!!!
+! INCORRECT VALUE ENTERED !
+ !!!!!!!!!!!!!!!!!!!!!!!!!""")
+            question()
+
+
+question()
