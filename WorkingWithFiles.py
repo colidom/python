@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v3.2
+# v3.3
 # Importing  modules
 import os
 import shutil
@@ -11,14 +11,16 @@ import sys
 src = input('Please indicate the path of the input files: ')
 dest = input('Please indicate the path to leave the files: ')
 
-if src:
-    print('The route of entry is: ' + src)
-else:
-    sys.exit('¡You must enter an inbound route! Ending program...')
-if dest:
-    print('The exit route is: ' + dest)
-else:
-    sys.exit('¡You must indicate an exit route! Ending program...')
+if src == '':
+    sys.exit("""
+*******************************************************
+* ¡You must indicate a source path! Ending program... *
+*******************************************************""")
+if dest == '':
+    sys.exit("""
+************************************************************
+* ¡You must indicate a destination path! Ending program... *
+************************************************************""")
 
 
 # Creates folders by file name, and then moves the files to the corresponding folder
