@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v3.1
+# v3.2
 # Importing  modules
 import os
 import shutil
@@ -20,11 +20,10 @@ if dest:
 else:
     sys.exit('¡You must indicate an exit route! Ending program...')
 
-os.chdir(dest)
-
 
 # Creates folders by file name, and then moves the files to the corresponding folder
 def classify():
+    os.chdir(dest)
     for f in os.listdir(src):
         splitname = f.split('_')
         status = splitname[1]
