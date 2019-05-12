@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v4.1
+# v4.2
 # Importing  modules
 import os
 import shutil
@@ -59,15 +59,16 @@ def classify():
 
 def question():
     option = str
-    option = (input("""
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|Choose one of the following options:   |                                            
-|  (a) Keeping original file name       |
-|  (b) Rename files                     |
-|  (c) Exit                             |  
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    print('Choose one of the following options: ')
+    option = (input("""+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  (a) Keep original file name  |
+|  (b) Rename files             |
+|  (c) Exit                     |  
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 Chosen option:""") + option())
-    if option == 'a':
+    if option == 'c':
+        sys.exit('Closing tool...See you later!')
+    elif option == 'a':
         print('Sorting out keeping the original name of the files, please wait...')
         classify()
         print('¡Done!')
@@ -75,16 +76,8 @@ Chosen option:""") + option())
         print('Shorting out and renaming file names, please wait...')
         classify_new_name()
         print('¡Done!')
-    elif option == 'c':
-        sys.exit('Closing tool...See you later.!')
-    elif option == '':
-        print('¡ERROR! No option has been chosen')
-        question()
     else:
-        print("""
- !!!!!!!!!!!!!!!!!!!!!!!!!
-! INCORRECT VALUE ENTERED !
- !!!!!!!!!!!!!!!!!!!!!!!!!""")
+        print('Incorrect or empty option... ')
         question()
 
 
