@@ -70,23 +70,22 @@ Chosen option:""") + option())
     if option == 'a':
         print('Sorting out keeping the original name of the files, please wait...')
         classify()
-        print('¡Finalizado!')
+        print('¡Done!')
     elif option == 'b':
         print('Shorting out and renaming file names, please wait...')
         classify_new_name()
         print('¡Done!')
+    elif option == 'c':
+        sys.exit('Closing tool...See you later.!')
+    elif option == '':
+        print('¡ERROR! No option has been chosen')
+        question()
     else:
-        if option == '':
-            print('¡ERROR! No option has been chosen')
-            question()
-        elif option == 'c':
-            sys.exit('Closing tool...See you later.!')
-        elif option != 'a' or 'b' or 'c':
-            print("""
+        print("""
  !!!!!!!!!!!!!!!!!!!!!!!!!
 ! INCORRECT VALUE ENTERED !
  !!!!!!!!!!!!!!!!!!!!!!!!!""")
-            question()
+        question()
 
 
 question()
