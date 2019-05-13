@@ -41,7 +41,9 @@ def classify_new_name():
                 msgInt += 1
                 msgName = msgName[:8] + str(msgInt)
                 newFileName = foldername + '\\' + msgName + '.xml'
+        print('Shorting out and renaming file names, please wait...')
         shutil.move(os.path.join(src, f), newFileName)
+        print('¡Done!')
 
 
 # Creates folders by file name, and then moves the files to the corresponding folder keeping original filenames.
@@ -54,7 +56,9 @@ def classify():
         foldername = topic + '_' + 'Status_' + status
         if not os.path.exists(foldername):
             os.mkdir(foldername)
+        print('Sorting out keeping the original name of the files, please wait...')
         shutil.move(os.path.join(src, f), foldername)
+        print('¡Done!')
 
 
 def question():
@@ -68,23 +72,13 @@ def question():
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 Chosen option:""") + option())
     if option == 'a':
-        print('Sorting out keeping the original name of the files, please wait...')
         classify()
-        print('¡Done!')
     elif option == 'b':
-        print('Shorting out and renaming file names, please wait...')
         classify_new_name()
-        print('¡Done!')
     elif option == 'c':
         sys.exit('Closing tool...See you later.!')
-    elif option == '':
-        print('¡ERROR! No option has been chosen')
-        question()
     else:
-        print("""
- !!!!!!!!!!!!!!!!!!!!!!!!!
-! INCORRECT VALUE ENTERED !
- !!!!!!!!!!!!!!!!!!!!!!!!!""")
+        print('¡ERROR! The entered value is not correct')
         question()
 
 
