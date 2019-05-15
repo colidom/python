@@ -42,6 +42,9 @@ def classify_new_name():
                 msgName = msgName[:8] + str(msgInt)
                 newFileName = foldername + '\\' + msgName + '.xml'
         shutil.move(os.path.join(src, f), newFileName)
+        names = newFileName.split('\\')
+        print('Moving file: ' + f + ' into the folder--> ' + names[0] + ' renamed by : ' + names[1])
+    print('¡Done!')
 
 
 # Creates folders by file name, and then moves the files to the corresponding folder keeping original filenames.
@@ -55,29 +58,29 @@ def classify():
         if not os.path.exists(foldername):
             os.mkdir(foldername)
         shutil.move(os.path.join(src, f), foldername)
+    print('¡Done!')
 
 
 def question():
     option = str
-    print('Choose one of the following options: ')
-    option = (input("""+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|  (a) Keep original file name  |
-|  (b) Rename files             |
-|  (c) Exit                     |  
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    option = (input("""
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Choose one of the following options:   |                                            
+|  (a) Keeping original file name       |
+|  (b) Rename files                     |
+|  (c) Exit                             |  
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 Chosen option:""") + option())
-    if option == 'c':
-        sys.exit('Closing tool...See you later!')
-    elif option == 'a':
+    if option == 'a' or option == 'A':
         print('Sorting out keeping the original name of the files, please wait...')
         classify()
-        print('¡Done!')
-    elif option == 'b':
+    elif option == 'b'or option == 'B':
         print('Shorting out and renaming file names, please wait...')
         classify_new_name()
-        print('¡Done!')
+    elif option == 'c' or option == 'C':
+        sys.exit('Closing tool...See you later.!')
     else:
-        print('Incorrect or empty option... ')
+        print('¡ERROR! The entered value is not correct')
         question()
 
 
