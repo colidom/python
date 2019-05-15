@@ -69,13 +69,13 @@ def question():
 |  (c) Exit                             |  
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 Chosen option:""") + option())
-    if option == 'a':
+    if option == 'a' or option == 'A':
         print('Sorting out keeping the original name of the files, please wait...')
         classify()
-    elif option == 'b':
+    elif option == 'b'or option == 'B':
         print('Shorting out and renaming file names, please wait...')
         classify_new_name()
-    elif option == 'c':
+    elif option == 'c' or option == 'C':
         sys.exit('Closing tool...See you later.!')
     else:
         print('¡ERROR! The entered value is not correct')
