@@ -43,7 +43,7 @@ def classify_new_name():
                 newFileName = foldername + '\\' + msgName + '.xml'
         shutil.move(os.path.join(src, f), newFileName)
         names = newFileName.split('\\')
-        print('Moving file: ' + f + ' into the folder--> ' + names[0] + ' renamed by : ' + names[1])
+        print('Moving file: ' + f + ' into the folder--> ' + names[0] + ' renamed to : ' + names[1])
     print('¡Done!')
 
 
