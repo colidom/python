@@ -1,7 +1,7 @@
 # !/usr/bin/python3
 # coding: utf8
 # @author Bulls90
-# v4.1
+# v4.2
 # Importing  modules
 import os
 import shutil
@@ -42,6 +42,8 @@ def classify_new_name():
                 msgName = msgName[:8] + str(msgInt)
                 newFileName = foldername + '\\' + msgName + '.xml'
         shutil.move(os.path.join(src, f), newFileName)
+        names = newFileName.split('\\')
+        print('Moving file: ' + f + ' into the folder--> ' + names[0] + ' renamed by : ' + names[1])
     print('¡Done!')
 
 
