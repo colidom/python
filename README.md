@@ -4,6 +4,12 @@
 
 `Listado de aplicaciones:`
 
+ **Aplicación web con Flask**
+ ---
+ Proyecto web personal desarrollado con Python3 y el framework Flask.
+ (En proceso...)
+
+ 
  **WorkingWithFiles.py**
  ---
  Herramienta para tratar ficheros clasificándolos en distintos directorios dependiendo del nombre de cada fichero.
