@@ -1,6 +1,6 @@
 # !/usr/bin/python3
 # coding: utf8
-# @author Bulls90
+# @author colidom
 # v4.2
 # Importing  modules
 import os
