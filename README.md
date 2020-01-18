@@ -24,8 +24,7 @@
  
  **Utilidades**
   ---
-    - Agenda 
-        - Agenda donde podemos guardar nombres de contactos con sus respectivos números de teléfono, además de opciones como, mostrar lista de contactos, editar o eliminar un contacto.
-    - Sorteo 
-        - Herramienta para realizar sorteo mediante el nombre de los usuarios que nos pedirá el programa mediante la opción uno.
-        
+- Agenda 
+    - Agenda donde podemos guardar nombres de contactos con sus respectivos números de teléfono, además de opciones como, mostrar lista de contactos, editar o eliminar un contacto.
+- Sorteo 
+    - Herramienta para realizar sorteo mediante el nombre de los usuarios que nos pedirá el programa mediante la opción uno.
