@@ -3,9 +3,9 @@ def show_contacts(phone_book):
     if phone_book == {}:
         print("La lista telefónica está vacía.")
     for name, number in phone_book.items():
-        print("{}: {}".format(name, number))
+        print(f"{name}: {number}")
     print(" ")
-    input("Pulse ENTER para volver.")
+    input("Pulse ENTER para volver al menú.")
 
 
 def add_contact(phone_book, name, phone):
@@ -24,16 +24,16 @@ def menu():
         print("3. Borrar un contacto.")
         print("4. Salir. ")
         print("******************************")
-        option = input("Elija una opción:")
+        option = input("Elija una opción: ")
         option = int(option)
         if option == 1:
             show_contacts(phone_book)
         if option == 2:
             name = input("Introduzca el nombre: ")
             if name in phone_book:
-                print("Error, el Nombre introducido ya existe. ")
+                print("Error, el Nombre introducido ya existe.")
             else:
-                phone = input("Introduzca el número de teléfono. ")
+                phone = input("Introduzca el número de teléfono: ")
                 add_contact(phone_book, name, phone)
         if option == 3:
             name = input("Nombre del contacto que decea eliminar: ")
