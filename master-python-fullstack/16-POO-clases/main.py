@@ -17,9 +17,6 @@ class Coche:
     def setColor(self, color):
         self.color = color
     
-    def getColor(self):
-        return self.color
-    
     def setModelo(self, modelo):
         self.modelo = modelo
     
@@ -35,6 +32,10 @@ class Coche:
     # Getters
     def getVelocidad(self):
         return self.velocidad
+
+    def getColor(self):
+        return self.color
+    
 
 # fin definición clase
 
