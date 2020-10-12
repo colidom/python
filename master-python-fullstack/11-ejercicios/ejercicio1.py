@@ -32,6 +32,7 @@ print("\nRecorremos la lista con la función: ")
 print(recorreLista(numeros))
 
 # Preguntamos al usuario si quiere buscar un número concreto en la lista
+"""
 option = input("Desea buscar un número en la lista: ")
 
 if option == "si":
@@ -42,7 +43,7 @@ if option == "si":
         print("El número introducido no existe en la lista!")
 else:
     print("Comprobación de existencia de número en la lista ¡DESCARTADA!")
-
+"""
 
 # Solución del profesor
 print("\n***** Solución del profesor *****")
@@ -72,16 +73,19 @@ print("###### Mostrar longitud #######")
 print(len(numeros2))
 
 # Búsqueda en la lista
-print("###### Búsqueda en la lista #######")
-busqueda = int(input("Introduce el número: "))
-
-comprobar = isinstance(busqueda, int)
-while not comprobar or busqueda <= 0:
+try:
+    print("###### Búsqueda en la lista #######")
     busqueda = int(input("Introduce el número: "))
-else:
-    print(f"Has introducido el {busqueda}")
 
-print(f"###### Buscar en la lista el número {busqueda} #######")
+    comprobar = isinstance(busqueda, int)
+    while not comprobar or busqueda <= 0:
+        busqueda = int(input("Introduce el número: "))
+    else:
+        print(f"Has introducido el {busqueda}")
 
-search = numeros.index(busqueda)
-print(f"El número buscado existe en la lista, es el índice: {search}")
+    print(f"###### Buscar en la lista el número {busqueda} #######")
+
+    search = numeros.index(busqueda)
+    print(f"El número buscado existe en la lista, es el índice: {search}")
+except:
+    print(f"El número '{busqueda}' no está en la lista, lo siento")
