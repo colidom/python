@@ -51,6 +51,17 @@ coche.acelerar()
 coche.acelerar()
 coche.frenar()
 
+print("COCHE 1:")
 print(coche.marca, coche.getModelo(), coche.getColor())
-print("Velocidad nueva: ", coche.getVelocidad)
+print("Velocidad nueva: ", coche.getVelocidad())
+print("--------------------------")
 
+# Crear más objetos
+coche2 = Coche()
+
+coche2.setColor("Verde")
+coche2.setModelo("Gallardo")
+
+print("COCHE 2:")
+print(coche2.marca, coche2.getModelo(), coche2.getColor())
+print(type(coche2))
