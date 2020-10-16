@@ -6,4 +6,23 @@ Proyecto Python y Mysql:
 - Si elegimos login, identifica al usuario y nos preguntará
 - Crear nota, mostrar notas, borrarlas
 """
+from usuarios import acciones
+
+
+print("""
+Acciones disponibles:
+    - registro
+    - login
+""")
+
+# Instanciamos la clase (Creamos objeto)
+hazEl = acciones.Acciones()
+
+accion = input("¿Que quieres hacer?: ")
+
+if accion == "registro":
+    hazEl.registro()
+
+elif accion == "login":
+    hazEl.login()
 
