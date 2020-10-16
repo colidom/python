@@ -22,7 +22,7 @@ class Acciones:
         print("Vale!!! Identifícate en el sistema...")
         
         try:
-            email = input("¿Cual es tu nombre?: ")
+            email = input("¿Cual es tu email?: ")
             password = input("¿Cual es tu contraseña?: ")
 
             usuario = modelo.Usuario('','', email, password)
@@ -40,4 +40,28 @@ class Acciones:
         
 
     def proximasAcciones(self, usuario):
-        pass
+        print("""
+        Acciones disponibles: 
+        - Crear nota (crear)
+        - Mostrar tus notas (mostrar)
+        - Eliminar nota (eliminar)
+        - Salir (salir)
+        """)
+
+        accion = input("¿Que quieres hacer?: ")
+
+        if accion == "crear":
+            print("Vamos a crear tu nota...")
+            self.proximasAcciones(usuario)
+
+        elif accion == "mostrar":
+            print("Vamos a mostrar tu nota...")
+            self.proximasAcciones(usuario)
+
+        elif accion == "eliminar":
+            print("Vamos a eliminar tu nota...")
+            self.proximasAcciones(usuario)
+
+        elif accion == "salir":
+            print(f"OK {usuario[1]}, hasta pronto!!!")
+            exit()
