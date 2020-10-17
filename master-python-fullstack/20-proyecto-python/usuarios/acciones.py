@@ -60,11 +60,11 @@ class Acciones:
             self.proximasAcciones(usuario)
 
         elif accion == "mostrar" or accion == "2":
-            print("Vamos a mostrar tu nota...")
+            hazEl.mostrar(usuario)
             self.proximasAcciones(usuario)
 
         elif accion == "eliminar" or accion == "3":
-            print("Vamos a eliminar tu nota...")
+            hazEl.borrar(usuario)
             self.proximasAcciones(usuario)
 
         elif accion == "salir" or accion == "4":
