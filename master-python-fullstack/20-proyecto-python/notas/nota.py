@@ -18,5 +18,5 @@ class Nota:
 
         cursor.execute(sql, nota)
         database.commit()
-        return [cursor.rowcound, self]
+        return [cursor.rowcount, self]
         
