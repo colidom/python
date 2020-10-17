@@ -11,8 +11,8 @@ from usuarios import acciones
 
 print("""
 Acciones disponibles:
-    - registro
-    - login
+    1- registro
+    2- login
 """)
 
 # Instanciamos la clase (Creamos objeto)
@@ -20,9 +20,8 @@ hazEl = acciones.Acciones()
 
 accion = input("¿Que quieres hacer?: ")
 
-if accion == "registro":
+if accion == "registro" or accion == "1":
     hazEl.registro()
 
-elif accion == "login":
+elif accion == "login" or accion == "2":
     hazEl.login()
-

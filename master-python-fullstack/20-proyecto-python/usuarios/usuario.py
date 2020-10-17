@@ -38,7 +38,6 @@ class Usuario():
         # Consulta para comprobar si existe el usuario
         sql = "SELECT * FROM usuarios WHERE email = %s AND password = %s"
 
-
         # Cifrar contraseña 
         cifrado = hashlib.sha256()
         cifrado.update(self.password.encode('utf8'))
