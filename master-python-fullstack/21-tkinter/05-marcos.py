@@ -21,7 +21,18 @@ marco.config(
 marco.pack(side=LEFT, anchor=SW)
 marco.pack_propagate(False)
 
-Label(marco, text="Primer marco").pack(side=LEFT, anchor=CENTER)
+texto = Label(marco, text="Primer marco")
+texto.config(
+    bg="red",
+    fg="white",
+    font=("Arial", 20),
+    height=10,
+    width=10,
+    bd=3,
+    relief=SOLID,
+    anchor=CENTER
+)
+texto.pack()
 
 # Marco 2 1 dentro de marco padre TOP
 marco = Frame(marco_padre, width=250, height=250)
