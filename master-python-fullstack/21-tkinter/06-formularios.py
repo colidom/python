@@ -49,4 +49,17 @@ campo_grande.config(
     pady=15
 )
 
+# Label separador
+Label(ventana).grid(row=4, column=1)
+
+# Boton
+boton = Button(ventana, text="Enviar")
+boton.grid(row=4, column=1, sticky=W)
+boton.config(
+    padx=15,
+    pady=15,
+    bg="green",
+    fg="white"
+)
+
 ventana.mainloop()
