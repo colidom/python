@@ -59,18 +59,18 @@ mostrar.grid(row=4, column=0)
 
 # Radio buttons
 def marcar():
-    marcado.config(text=opcion.get())
+    marcado.config(text=mostrarGenero.get())
 
 
-opcion = StringVar()
-opcion.set(None)
+mostrarGenero = StringVar()
+mostrarGenero.set(None)
 
 Label(ventana, text="Cual es tu genero").grid(row=5)
 Radiobutton(
     ventana, 
     text="Masculino",
     value="Masculino",
-    variable=opcion,
+    variable=mostrarGenero,
     command=marcar
 ).grid(row=6, column=0)
 
@@ -78,7 +78,7 @@ Radiobutton(
     ventana, 
     text="Femenino",
     value="Femenino",
-    variable=opcion,
+    variable=mostrarGenero,
     command=marcar
 ).grid(row=7, column=0)
 
@@ -86,6 +86,20 @@ marcado = Label(ventana)
 marcado.grid(row=8)
 
 # Option Menu
+def seleccionar():
+    seleccionado.config(text=mostrarOpcion.get())
 
+
+mostrarOpcion = StringVar()
+mostrarOpcion.set("Opcion 3")
+
+Label(ventana, text="Selecciona una opción!").grid(row=5, column=1)
+
+select = OptionMenu(ventana, mostrarOpcion, "Opcion 1", "Opcion 2", "Opcion 3")
+select.grid(row=6, column=1)
+
+Button(ventana, text="Ver", command=seleccionar).grid(row=7, column=1)
+seleccionado = Label(ventana)
+seleccionado.grid(row=8, column=1)
 
 ventana.mainloop()
