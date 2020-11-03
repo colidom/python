@@ -23,7 +23,7 @@ def home():
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=20,
+        padx=190,
         pady=20
     )
     home_label.grid(row=0, column=0)
@@ -34,14 +34,20 @@ def home():
     data_label.grid_remove()
     
 def add():
+    # Encabezado
     add_label.config(
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=20,
+        padx=80,
         pady=20
     )
-    add_label.grid(row=0, column=0)
+    add_label.grid(row=0, column=0, columnspan=10)
+
+    # Campos del formulario
+    add_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=E)
+    add_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=W)
+
 
     # Ocultar otras pantallas
     home_label.grid_remove()
@@ -53,7 +59,7 @@ def info():
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=20,
+        padx=120,
         pady=20
     )
     info_label.grid(row=0, column=0)
@@ -64,11 +70,25 @@ def info():
     add_label.grid_remove()
     data_label.grid_remove()
 
+# Variables importantes
+name_data = StringVar()
+price_data = StringVar()
+
 # Definir campos de pantalla (INICIO)
 home_label = Label(ventana, text="Inicio")
 
 # Definir campos de pantalla (ADD)
 add_label = Label(ventana, text="Añadir producto")
+
+# Campos del formulario
+add_name_label = Label(ventana, text="Nombre: ")
+add_name_entry = Entry(ventana, textvariable=name_data)
+
+add_price_label = Label(ventana, text="Precio: ")
+add_price_entry = Entry(ventana, textvariable=price_data)
+
+add_description_label = Label(ventana, text="Descripción: ")
+add_description_entry = Text(ventana)
 
 # Definir campos de pantalla (INFORMACION)
 info_label = Label(ventana, text="Información")
