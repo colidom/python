@@ -23,10 +23,14 @@ def home():
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=190,
+        padx=210,
         pady=20
     )
-    home_label.grid(row=0, column=0)
+    home_label.grid(row=0, column=0, columnspan=10)
+
+    # Campos del formulario
+    add_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=E)
+    add_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=W)
 
     # Ocultar otras pantallas
     add_label.grid_remove()
@@ -41,7 +45,7 @@ def add():
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=80,
+        padx=120,
         pady=20
     )
     add_label.grid(row=0, column=0, columnspan=10)
@@ -63,12 +67,16 @@ def info():
         fg="white",
         bg="black",
         font=("Arial", 30),
-        padx=120,
+        padx=150,
         pady=20
     )
-    info_label.grid(row=0, column=0)
-    data_label.grid(row=1, column=0)
+    info_label.grid(row=0, column=0, columnspan=10)
+    data_label.grid(row=1, column=0, columnspan=10)
     
+    # Campos del formulario
+    add_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=E)
+    add_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=W)
+
     # Ocultar otras pantallas
     home_label.grid_remove()
     add_label.grid_remove()
