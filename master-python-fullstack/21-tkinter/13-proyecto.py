@@ -13,7 +13,8 @@ from tkinter import *
 
 # Definir ventana
 ventana = Tk()
-ventana.geometry("500x500")
+# ventana.geometry("500x500")
+ventana.minsize(500, 500)
 ventana.title("Proyecto Tkinter - Master en Python")
 ventana.resizable(0, 0)
 
