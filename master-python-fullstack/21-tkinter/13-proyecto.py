@@ -81,7 +81,6 @@ def add():
 
     # Ocultar otras pantallas
     home_label.grid_remove()
-    add_frame.grid_remove()
     info_label.grid_remove()
     data_label.grid_remove()
 
