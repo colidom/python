@@ -54,6 +54,28 @@ def add():
     add_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=E)
     add_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=W)
 
+    add_price_label.grid(row=2, column=0, padx=5, pady=5, sticky=E)
+    add_price_entry.grid(row=2, column=1, padx=5, pady=5, sticky=W)
+
+    add_description_label.grid(row=3, column=0, padx=5, pady=5, sticky=NW)
+    add_description_entry.grid(row=3, column=1, padx=5, pady=5, sticky=W)
+    add_description_entry.config(
+        width=30,
+        height=5,
+        font=("Consolas", 12),
+        padx=15,
+        pady=15
+    )
+
+    add_separator.grid(row=4, column=1)
+
+    boton.grid(row=5, column=1,sticky=E)
+    boton.config(
+        padx=15,
+        pady=5,
+        bg="green",
+        fg="white"
+    )
 
     # Ocultar otras pantallas
     home_label.grid_remove()
@@ -103,6 +125,10 @@ add_price_entry = Entry(ventana, textvariable=price_data)
 
 add_description_label = Label(ventana, text="Descripción: ")
 add_description_entry = Text(ventana)
+
+add_separator = Label(ventana)
+
+boton = Button(ventana, text="Guardar")
 
 # Definir campos de pantalla (INFORMACION)
 info_label = Label(ventana, text="Información")
