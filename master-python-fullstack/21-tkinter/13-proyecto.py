@@ -26,11 +26,18 @@ def home():
         padx=210,
         pady=20
     )
-    home_label.grid(row=0, column=0, columnspan=10)
+    home_label.grid(row=0, column=0)
 
-    # Campos del formulario
-    add_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=E)
-    add_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=W)
+    products_box.grid(row=1)
+
+    #Listar productos
+    for product in products:
+        if len(product) == 3:
+            product.append("added")
+            Label(products_box, text=product[0]).grid()
+            Label(products_box, text=product[1]).grid()
+            Label(products_box, text=product[2]).grid()
+            Label(products_box, text="-----------------").grid()
 
     # Ocultar otras pantallas
     add_label.grid_remove()
@@ -81,6 +88,7 @@ def add():
 
     # Ocultar otras pantallas
     home_label.grid_remove()
+    products_box.grid_remove()
     info_label.grid_remove()
     data_label.grid_remove()
 
@@ -103,6 +111,7 @@ def info():
 
     # Ocultar otras pantallas
     add_label.grid_remove()
+    products_box.grid_remove()
     add_frame.grid_remove()
     home_label.grid_remove()
 
@@ -128,6 +137,7 @@ price_data = StringVar()
 
 # Definir campos de pantalla (INICIO)
 home_label = Label(ventana, text="Inicio")
+products_box= Frame(ventana, width=250)
 
 # Definir campos de pantalla (ADD)
 add_label = Label(ventana, text="Añadir producto")
