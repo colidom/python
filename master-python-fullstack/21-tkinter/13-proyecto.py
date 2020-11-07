@@ -33,6 +33,8 @@ def home():
     info_label.grid_remove()
     data_label.grid_remove()
     
+    return True
+
 def add():
     # Encabezado
     add_label.config(
@@ -54,6 +56,8 @@ def add():
     info_label.grid_remove()
     data_label.grid_remove()
 
+    return True
+    
 def info():
     info_label.config(
         fg="white",
@@ -69,6 +73,8 @@ def info():
     home_label.grid_remove()
     add_label.grid_remove()
     data_label.grid_remove()
+
+    return True
 
 # Variables importantes
 name_data = StringVar()
