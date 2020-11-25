@@ -52,7 +52,12 @@ def pagina(request):
         <p>Creado por Carlos Oliva</p>
     """)
 
-def contacto(request, nombre, apellidos):
-    return HttpResponse(layout + f"""
-        <h1>Contacto {nombre} {apellidos}</h1>
-    """)
+def contacto(request, nombre="", apellidos=""):
+    html = ""
+    if nombre and apellidos:
+        html += "<p>El nombre completo es:</p>"
+        html += f"<h3>{nombre} {apellidos}</h3>"
+
+    return HttpResponse(layout + f"<h1>Contacto</h1>" + html)
+        
+    
