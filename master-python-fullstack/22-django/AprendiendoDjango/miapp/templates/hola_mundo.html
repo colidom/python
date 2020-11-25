@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
-</head>
-<body>
-    <h1>Hola Mundo con Django!!</h1>
-    <h3>Soy Carlos Oliva</h3>
+{% extends 'layout.html' %}
 
-    <h1>Sitio web con Django | Carlos Oliva</h1>
-    <hr/>
-    <ul>
-        <li>
-            <a href="/inicio">Inicio</a>
-        </li>
-        <li>
-            <a href="/hola-mundo">Hola Mundo</a>
-        </li>
-        <li>
-            <a href="/pagina-pruebas">Página pruebas</a>
-        </li>
-        <li>
-            <a href="/contacto">Contacto</a>
-        </li>
-    </ul>
-    <hr/>
-</body>
-</html>
+{% block title %}Hola Mundo{% endblock %}
+
+{% block content %}
+<h1>Página de Hola Mundo</h1>
+{% endblock %}
