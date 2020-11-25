@@ -5,10 +5,21 @@ from django.shortcuts import render, HttpResponse
 # MVT = Modelo Template Vista(vista = controlador) -> Acciones(métodos)
 
 def index(request):
-    return HttpResponse("""
+
+    html = """
         <h1>Inicio</h1>
+        <p>Años hasta el 2050:</p>
     """
-    )
+    year = 2020
+
+    while year <= 2050:
+
+        if year % 2 == 0:
+            html += f"<li>{str(year)}</li>"
+        year +=1
+
+    html += "</ul>"
+    return HttpResponse(html)
 
 def hola_mundo(request):
     return HttpResponse("""
