@@ -15,24 +15,33 @@
 </head>
 
 <body>
-    <h1>Sitio web con Django | Carlos Oliva </h1>
-    <hr />
-    <ul>
-        <li><a href="/inicio">Inicio</a></li>
-        <li><a href="/hola-mundo">Hola Mundo</a></li>
-        <li><a href="/pagina-pruebas">Página pruebas</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-    </ul>
-    <hr />
 
+    <!--Cabecera de la página-->
+    <header>
+        <div id="logotipo">
+            <!--Logo Django-->
+            <h1>Sitio web con Django | Carlos Oliva </h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/inicio">Inicio</a></li>
+            <li><a href="/hola-mundo">Hola Mundo</a></li>
+            <li><a href="/pagina-pruebas">Página pruebas</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <hr />
+    
     <div id="content">
+        <h2 class="title">Título de prueba</h2>
         {% block content %}
             <!--Código que viene de templates-->
             <strong>Contenido del bloque original!!!</strong>
         {% endblock %}
     </div>
 
-    <hr />
     <footer>
         Master en Python &copy; {% now "Y" %} | Carlos Oliva Domínguez
     </footer>
