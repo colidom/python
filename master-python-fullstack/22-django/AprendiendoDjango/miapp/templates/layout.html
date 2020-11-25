@@ -40,11 +40,12 @@
     </div>
     
     <div id="content">
-        <h2 class="title">Título de prueba</h2>
-        {% block content %}
-            <!--Código que viene de templates-->
-            <strong>Contenido del bloque original!!!</strong>
-        {% endblock %}
+        <div class="box">
+            {% block content %}
+                <!--Código que viene de templates-->
+                <strong>Contenido del bloque original!!!</strong>
+            {% endblock %}
+        </div>
     </div>
 
     <footer>
