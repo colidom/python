@@ -17,6 +17,9 @@ layout = """
     <li>
         <a href="/pagina-pruebas">Página pruebas</a>
     </li>
+    <li>
+        <a href="/contacto">Contacto</a>
+    </li>
 </ul>
 <hr/>
 """
@@ -47,4 +50,9 @@ def pagina(request):
     return HttpResponse(layout + """
         <h1>Página de mi web</h1>
         <p>Creado por Carlos Oliva</p>
+    """)
+
+def contacto(request, nombre, apellidos):
+    return HttpResponse(layout + f"""
+        <h1>Contacto {nombre} {apellidos}</h1>
     """)
