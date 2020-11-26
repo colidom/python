@@ -6,15 +6,19 @@ from django.shortcuts import render, HttpResponse, redirect
 
 def index(request):
     
-    nombre = 'Carlos Oliva'
 
+    year = 2021
+    hasta = range(year, 2051)
+
+    nombre = 'Carlos Oliva'
     lenguajes = ['JavaScript', 'Python', 'PHP', 'C']
     
     return render(request, 'index.html', {
         'title': 'Inicio',
         'mi_variable': 'Soy un dato que está en la vista',
         'nombre': nombre,
-        'lenguajes': lenguajes
+        'lenguajes': lenguajes,
+        'years': hasta,
     })
 
 
