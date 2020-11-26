@@ -9,7 +9,7 @@ def index(request):
     nombre = 'Carlos Oliva'
 
     lenguajes = ['JavaScript', 'Python', 'PHP', 'C']
-
+    
     return render(request, 'index.html', {
         'title': 'Inicio',
         'mi_variable': 'Soy un dato que está en la vista',
