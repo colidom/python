@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
     path('inicio/', views.index, name="inicio"),
-    path('hola-mundo/', views.hola_mundo, name="hola_mundo"),
+    path('hola-mundo-django/', views.hola_mundo, name="hola_mundo"),
     path('pagina-pruebas/', views.pagina, name="pagina"),
     path('pagina-pruebas/<int:redirigir>', views.pagina, name="pagina"),
     path('contacto/', views.contacto, name="contacto"),
