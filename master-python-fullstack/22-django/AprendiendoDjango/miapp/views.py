@@ -5,9 +5,13 @@ from django.shortcuts import render, HttpResponse, redirect
 # MVT = Modelo Template Vista(vista = controlador) -> Acciones(métodos)
 
 def index(request):
+    
+    nombre = 'Carlos Oliva'
+
     return render(request, 'index.html', {
         'title': 'Inicio',
-        'mi_variable': 'Soy un dato que está en la vista'
+        'mi_variable': 'Soy un dato que está en la vista',
+        'nombre': nombre
     })
 
 
