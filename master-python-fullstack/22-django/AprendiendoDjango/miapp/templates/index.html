@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} {{title}} {% endblock %}
 
 {% block content %}
 
@@ -9,5 +9,8 @@
         <h1>Hola hola</h1>
     {% endcomment %}
 
-    <h1 class="title">Página de Inicio</h1>
+    <h1 class="title">Página de {{title}}</h1>
+
+    {{mi_variable}}
+
 {% endblock %}
