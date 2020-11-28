@@ -27,7 +27,10 @@ def hola_mundo(request):
 
 
 def pagina(request):
-    return render(request, 'pagina.html')
+    return render(request, 'pagina.html', {
+        'texto': 'Este es mi texto',
+        'lista': ['uno', 'dos', 'tres']
+    })
 
 
 def contacto(request, nombre="", apellidos=""):
