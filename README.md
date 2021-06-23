@@ -29,4 +29,7 @@
     - Con agenda.py donde podemos guardar nombres de contactos con sus respectivos números de teléfono, además de opciones como, mostrar lista de contactos, editar o eliminar un contacto.
 - sorteo.py
     - Con sorteo.py podemos realizar sorteos mediante el nombre de los usuarios que nos pedirá el programa mediante la opción uno.
+
+- ./EmpaquetadorArchivos/empaquetador.py
+    - Con esta herramienta, en un principio lo que pretendemos es empaquetar un módulo de Prestashop, poniendo el nombre necesario para el mismo `nombre_v.v.v`. Además ignoramos una serie de carpetas antes de empaquetar, .git que da fallos si la subimos a prestashop y phpdoc que no es necesario subir la doc del módulo. Además dejamos un log para comprobar que ficheros y subcarpetas se han empaquetado.
 --- 
