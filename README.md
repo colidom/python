@@ -13,7 +13,7 @@
 --- 
  
  ## Files-Clasifier
- ### WorkingWithFiles.py
+ - WorkingWithFiles.py
  Herramienta para tratar ficheros clasificándolos en distintos directorios dependiendo del nombre de cada fichero.
  Básicamente hacemos un split del nombre de los ficheros(requerido), mediante "_" de modo que si tuvieramos un 
  fichero con el nombre `11/05/2019_2_AMAZON_invoice_8909282.xml` independientemente de la opción que elijamos, cambiar 
