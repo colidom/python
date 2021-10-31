@@ -1,6 +1,6 @@
 diccionario = "TRWAGMYFPDXBNJZSQVHLCKE"
-cadena = "22312313212301234704"
+dni = int(input("Por favor introduzca su nº DNI sin la letra: "))
 
-letra = int(cadena) % 23
+letra = dni % 23
 codigoControl = diccionario[letra]
-print("El código de envío es: " + (f"{cadena}{codigoControl}"))
+print(f"Su número fiscal (NIF) es: {dni}{codigoControl}")
