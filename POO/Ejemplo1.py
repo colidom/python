@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class Humano(): #Creamos la clase Humano
+class Humano: #Creamos la clase Humano
     def __init__(self, edad, nombre, ocupacion): #Definimos el parametro edad , nombre y ocupacion
         self.edad = edad # Definimos que el atributo edad, sera la edad asignada
         self.nombre = nombre # Definimos que el atributo nombre, sera el nombre asig
