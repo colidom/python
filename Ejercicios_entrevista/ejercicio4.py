@@ -11,10 +11,10 @@ def sum(list):
     return result
 
 
-def multip(a):
+def multip(list):
     total = 1
-    for i in range(len(a)):
-        total *= a[i]
+    for i in range(len(list)):
+        total *= list[i]
     return total
 
 
