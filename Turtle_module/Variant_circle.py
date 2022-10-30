@@ -14,8 +14,8 @@ t.pendown()
 while True:
     t.forward(a)
     t.right(b)
-    a+=3
-    b+=1
+    a += 3
+    b += 1
     if b == 210:
         break
     t.hideturtle()
