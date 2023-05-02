@@ -26,10 +26,10 @@ while seguir in ("s", "S"):
             # Preguntamos si seguimos añadiendo contactos
             seguir = input("¿Introducir otro contacto? s/n: ")
 
-    # Mostramos todos los contactos
-    for contacto in contactos:
-        for k, v in contacto.items():
-            print(k + ": " + v)
+# Mostramos todos los contactos
+for contacto in contactos:
+    for k, v in contacto.items():
+        print(k + ": " + v)
 
-        # Mostramos esto para finalizar la lectura
-        print("---------")
+    # Mostramos esto para finalizar la lectura
+    print("---------")
