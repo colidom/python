@@ -23,8 +23,8 @@ while seguir in ("s", "S"):
             # Añadimos el contacto a la lista
             contactos.append(contacto)
 
-            # Preguntamos si seguimos añadiendo contactos
-            seguir = input("¿Introducir otro contacto? s/n: ")
+    # Preguntamos si seguimos añadiendo contactos
+    seguir = input("¿Introducir otro contacto? s/n: ")
 
 # Mostramos todos los contactos
 for contacto in contactos:
