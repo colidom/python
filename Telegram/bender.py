@@ -88,17 +88,38 @@ async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
     # API de OpenWeatherMap
     TOKEN_OPENWEATHER = os.getenv("TOKEN_OPENWEATHER")
-    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={TOKEN_OPENWEATHER}&units=metric&lang=es"
+    url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={TOKEN_OPENWEATHER}&units=metric&lang=es"
 
     response = requests.get(url).json()
 
-    # Procesar la respuesta de la API
-    if response.get("weather"):
-        weather_description = response["weather"][0]["description"]
-        temperature = response["main"]["temp"]
-        city = response["name"]
+    # Verificar si hay datos en la respuesta
+    if "list" in response:
+        # Usar el primer pronóstico para otras informaciones
+        first_forecast = response["list"][0]
+        weather_description = first_forecast["weather"][0]["description"]
+        temperature = first_forecast["main"]["temp"]
+        city = response["city"]["name"]
+
+        # Acceder a la sensación térmica, humedad, presión y velocidad del viento
+        feels_like = first_forecast["main"]["feels_like"]  # Sensación térmica
+        humidity = first_forecast["main"]["humidity"]  # Humedad
+        pressure = first_forecast["main"]["pressure"]  # Presión
+        wind_speed = first_forecast["wind"]["speed"]  # Velocidad del viento
+
+        # Determinar el icono basado en la temperatura
+        if temperature < 20:
+            temp_icon = "🥶"  # Frío
+        elif 20 <= temperature <= 26:
+            temp_icon = "😊"  # Bienestar
+        else:
+            temp_icon = "🥵"  # Calor
+
         await update.message.reply_text(
-            f"El tiempo en {city} es: {weather_description} con una temperatura de {temperature}°C 🌡️"
+            f"El tiempo en {city} es: {weather_description} con una temperatura de {temperature}°C 🌡️\n"
+            f"Pero se siente como {feels_like}°C {temp_icon}\n"  # Sensación térmica con termómetro
+            f"Humedad: {humidity}% 💧\n"
+            f"Presión: {pressure} hPa ☁️\n"
+            f"Velocidad del viento: {wind_speed} m/s 💨\n"
         )
     else:
         await update.message.reply_text(
