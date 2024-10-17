@@ -1,3 +1,7 @@
+import os
+import requests
+from dotenv import load_dotenv
+
 from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -6,9 +10,6 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
-import os
-import requests
-from dotenv import load_dotenv
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
