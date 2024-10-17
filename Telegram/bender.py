@@ -77,8 +77,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                 await update.message.reply_text(
                     "Para saber el clima actual, compárteme tu ubicación en un mensaje privado haciendo clic aquí: t.me/bender0_bot 🌍"
                 )
-        case _:
-            await update.message.reply_text("Lo siento, no entiendo ese mensaje. 🤖")
 
 
 # Función para manejar la ubicación del usuario
