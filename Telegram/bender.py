@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
-TOKEN = os.getenv("TOKEN")
+TOKEN_TELEGRAM = os.getenv("TOKEN_TELEGRAM")
 
 
 # Función para el comando /start
@@ -29,41 +29,58 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     user_text = update.message.text.lower()
     user_name = update.effective_user.first_name
 
-    if "hola" in user_text:
-        await update.message.reply_text(f"Hola {user_name}, ¡bienvenido! 😊")
-    elif "adiós" in user_text or "chao" in user_text:
-        await update.message.reply_text(f"¡Hasta luego, {user_name}! 👋")
-    elif "gracias" in user_text:
-        await update.message.reply_text(f"¡De nada, {user_name}! 😊")
-    elif "cómo estás" in user_text:
-        await update.message.reply_text(f"¡Estoy muy bien, {user_name}! ¿Y tú? 😄")
-    elif "buenos días" in user_text:
-        await update.message.reply_text(
-            f"¡Buenos días, {user_name}! ☀️ Espero que tengas un gran día."
-        )
-    elif "buenas noches" in user_text:
-        await update.message.reply_text(
-            f"¡Buenas noches, {user_name}! 🌙 Que descanses."
-        )
-    elif "cuéntame un chiste" in user_text:
-        await update.message.reply_text(
-            "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas! 😂"
-        )
-    elif "cuál es tu nombre" in user_text:
-        await update.message.reply_text(
-            "Soy Bender, un bot amigable, siempre aquí para ayudarte. 🤖"
-        )
-    elif "eres muy gracioso" in user_text:
-        await update.message.reply_text(f"¡Me alegra que pienses eso, {user_name}! 😄")
-    elif "previsión del tiempo" in user_text:
-        await update.message.reply_text(
-            "Por favor, comparte tu ubicación para decirte el clima actual. 🌍",
-            reply_markup=ReplyKeyboardMarkup(
-                [[KeyboardButton("Compartir ubicación 📍", request_location=True)]],
-                one_time_keyboard=True,
-                resize_keyboard=True,
-            ),
-        )
+    # Manejo de las respuestas según el texto del usuario
+    match user_text:
+        case text if "hola" in text:
+            await update.message.reply_text(f"Hola {user_name}, ¡bienvenido! 😊")
+        case text if "adiós" in text or "chao" in text:
+            await update.message.reply_text(f"¡Hasta luego, {user_name}! 👋")
+        case text if "gracias" in text:
+            await update.message.reply_text(f"¡De nada, {user_name}! 😊")
+        case text if "cómo estás" in text:
+            await update.message.reply_text(f"¡Estoy muy bien, {user_name}! ¿Y tú? 😄")
+        case text if "buenos días" in text:
+            await update.message.reply_text(
+                f"¡Buenos días, {user_name}! ☀️ Espero que tengas un gran día."
+            )
+        case text if "buenas noches" in text:
+            await update.message.reply_text(
+                f"¡Buenas noches, {user_name}! 🌙 Que descanses."
+            )
+        case text if "cuéntame un chiste" in text:
+            await update.message.reply_text(
+                "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas! 😂"
+            )
+        case text if "cuál es tu nombre" in text:
+            await update.message.reply_text(
+                "Soy Bender, un bot amigable, siempre aquí para ayudarte. 🤖"
+            )
+        case text if "eres muy gracioso" in text:
+            await update.message.reply_text(
+                f"¡Me alegra que pienses eso, {user_name}! 😄"
+            )
+        case text if "previsión del tiempo" in text:
+            if update.message.chat.type == "private":
+                await update.message.reply_text(
+                    "Por favor, comparte tu ubicación para decirte el clima actual. 🌍",
+                    reply_markup=ReplyKeyboardMarkup(
+                        [
+                            [
+                                KeyboardButton(
+                                    "Compartir ubicación 📍", request_location=True
+                                )
+                            ]
+                        ],
+                        one_time_keyboard=True,
+                        resize_keyboard=True,
+                    ),
+                )
+            else:
+                await update.message.reply_text(
+                    "Para saber el clima actual, compárteme tu ubicación en un mensaje privado haciendo clic aquí: t.me/bender0_bot 🌍"
+                )
+        case _:
+            await update.message.reply_text("Lo siento, no entiendo ese mensaje. 🤖")
 
 
 # Función para manejar la ubicación del usuario
@@ -71,9 +88,9 @@ async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     lat = update.message.location.latitude
     lon = update.message.location.longitude
 
-    # Llama a la API de OpenWeatherMap (debes reemplazar 'TU_API_KEY' con tu clave de API)
-    api_key = "42bdcbdb5e34cde430eab4f8ad50a92f"
-    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric&lang=es"
+    # API de OpenWeatherMap
+    TOKEN_OPENWEATHER = os.getenv("TOKEN_OPENWEATHER")
+    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={TOKEN_OPENWEATHER}&units=metric&lang=es"
 
     response = requests.get(url).json()
 
@@ -99,7 +116,7 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 # Configuración del bot
 if __name__ == "__main__":
     # Crear la aplicación del bot
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = ApplicationBuilder().token(TOKEN_TELEGRAM).build()
 
     # Registrar los manejadores de comandos y mensajes
     application.add_handler(CommandHandler("start", start))
