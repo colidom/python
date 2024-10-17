@@ -7,6 +7,7 @@ from telegram.ext import (
     ContextTypes,
 )
 import os
+import requests
 from dotenv import load_dotenv
 
 # Cargar variables de entorno desde el archivo .env
@@ -19,9 +20,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         f"¡Hola {update.effective_user.first_name}! Bienvenido, me llamo Bender y soy un bot 🤖"
     )
-
-
-import requests
 
 
 # Función para manejar mensajes de texto
