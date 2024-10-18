@@ -115,7 +115,7 @@ async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
         await update.message.reply_text(
             f"El tiempo en {city} es: {weather_description} con una temperatura de {temperature}°C 🌡️\n"
-            f"Pero se siente como {feels_like}°C {temp_icon}\n"  # Sensación térmica con termómetro
+            f"Pero se siente como {feels_like}°C {temp_icon}\n"
             f"Humedad: {humidity}% 💧\n"
             f"Presión: {pressure} hPa ☁️\n"
             f"Velocidad del viento: {wind_speed} m/s 💨\n"
