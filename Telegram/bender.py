@@ -1,7 +1,7 @@
 import os
+import re
 import requests
 from dotenv import load_dotenv
-
 from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -10,6 +10,9 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
+
+# Importar el diccionario desde el archivo numeros_significados.py
+from numeros_significados import numeros_significados
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
@@ -28,56 +31,75 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     user_text = update.message.text.lower()
     user_name = update.effective_user.first_name
 
-    # Manejo de las respuestas según el texto del usuario
-    match user_text:
-        case text if "hola" in text:
-            await update.message.reply_text(f"Hola {user_name}, ¡bienvenido! 😊")
-        case text if "adiós" in text or "chao" in text:
-            await update.message.reply_text(f"¡Hasta luego, {user_name}! 👋")
-        case text if "gracias" in text:
-            await update.message.reply_text(f"¡De nada, {user_name}! 😊")
-        case text if "cómo estás" in text:
-            await update.message.reply_text(f"¡Estoy muy bien, {user_name}! ¿Y tú? 😄")
-        case text if "buenos días" in text:
-            await update.message.reply_text(
-                f"¡Buenos días, {user_name}! ☀️ Espero que tengas un gran día."
-            )
-        case text if "buenas noches" in text:
-            await update.message.reply_text(
-                f"¡Buenas noches, {user_name}! 🌙 Que descanses."
-            )
-        case text if "cuéntame un chiste" in text:
-            await update.message.reply_text(
-                "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas! 😂"
-            )
-        case text if "cuál es tu nombre" in text:
-            await update.message.reply_text(
-                "Soy Bender, un bot amigable, siempre aquí para ayudarte. 🤖"
-            )
-        case text if "eres muy gracioso" in text:
-            await update.message.reply_text(
-                f"¡Me alegra que pienses eso, {user_name}! 😄"
-            )
-        case text if "previsión del tiempo" in text:
-            if update.message.chat.type == "private":
+    # Patrón regex para detectar preguntas sobre el significado de un número
+    numero_pregunta_patron = re.compile(
+        r"cu[aá]l es el significado del n[uú]mero (\d{2})"
+    )
+
+    # Verificar si el texto contiene una pregunta sobre un número
+    match = numero_pregunta_patron.search(user_text)
+    if match:
+        numero = match.group(1)  # Extraer el número de la pregunta
+        palabras = numeros_significados.get(numero, [])
+        if palabras:
+            respuesta = f"El número {numero} está asociado con: {', '.join(palabras)}"
+        else:
+            respuesta = f"No hay palabras asociadas al número {numero}"
+
+        await update.message.reply_text(respuesta)
+    else:
+        # Aquí va el resto de los casos que el bot maneja
+        match user_text:
+            case text if "hola" in text:
+                await update.message.reply_text(f"Hola {user_name}, ¡bienvenido! 😊")
+            case text if "adiós" in text or "chao" in text:
+                await update.message.reply_text(f"¡Hasta luego, {user_name}! 👋")
+            case text if "gracias" in text:
+                await update.message.reply_text(f"¡De nada, {user_name}! 😊")
+            case text if "cómo estás" in text:
                 await update.message.reply_text(
-                    "Por favor, comparte tu ubicación para decirte el clima actual. 🌍",
-                    reply_markup=ReplyKeyboardMarkup(
-                        [
+                    f"¡Estoy muy bien, {user_name}! ¿Y tú? 😄"
+                )
+            case text if "buenos días" in text:
+                await update.message.reply_text(
+                    f"¡Buenos días, {user_name}! ☀️ Espero que tengas un gran día."
+                )
+            case text if "buenas noches" in text:
+                await update.message.reply_text(
+                    f"¡Buenas noches, {user_name}! 🌙 Que descanses."
+                )
+            case text if "cuéntame un chiste" in text:
+                await update.message.reply_text(
+                    "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas! 😂"
+                )
+            case text if "cuál es tu nombre" in text:
+                await update.message.reply_text(
+                    "Soy Bender, un bot amigable, siempre aquí para ayudarte. 🤖"
+                )
+            case text if "eres muy gracioso" in text:
+                await update.message.reply_text(
+                    f"¡Me alegra que pienses eso, {user_name}! 😄"
+                )
+            case text if "previsión del tiempo" in text:
+                if update.message.chat.type == "private":
+                    await update.message.reply_text(
+                        "Por favor, comparte tu ubicación para decirte el clima actual. 🌍",
+                        reply_markup=ReplyKeyboardMarkup(
                             [
-                                KeyboardButton(
-                                    "Compartir ubicación 📍", request_location=True
-                                )
-                            ]
-                        ],
-                        one_time_keyboard=True,
-                        resize_keyboard=True,
-                    ),
-                )
-            else:
-                await update.message.reply_text(
-                    "Para saber el clima actual, compárteme tu ubicación en un mensaje privado haciendo clic aquí: t.me/bender0_bot 🌍"
-                )
+                                [
+                                    KeyboardButton(
+                                        "Compartir ubicación 📍", request_location=True
+                                    )
+                                ]
+                            ],
+                            one_time_keyboard=True,
+                            resize_keyboard=True,
+                        ),
+                    )
+                else:
+                    await update.message.reply_text(
+                        "Para saber el clima actual, compárteme tu ubicación en un mensaje privado haciendo clic aquí: t.me/bender0_bot 🌍"
+                    )
 
 
 # Función para manejar la ubicación del usuario
