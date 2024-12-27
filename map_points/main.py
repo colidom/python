@@ -1,6 +1,6 @@
 import os
-from utils.file_utils import get_csv_file, read_data, create_directories
-from utils.map_utils import initialize_map, add_markers, add_safe_zone, save_map
+from map_points.utils.filesystem import get_csv_file, read_data, create_directories
+from map_points.utils.map import initialize_map, add_markers, add_safe_zone, save_map
 
 
 def main():
