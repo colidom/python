@@ -9,6 +9,7 @@ def initialize_map(center, zoom_start=15):
 
 def add_markers(map_object, data):
     """Agrega marcadores al mapa a partir de los datos proporcionados."""
+    position = 1  # Empezamos en la posición 1
     for _, row in data.iterrows():
         try:
             lat, lng = map(float, row["location"].split(","))
@@ -16,12 +17,13 @@ def add_markers(map_object, data):
             time = row.get("time", "N/A")
 
             if lat != 0.0 and lng != 0.0:
-                popup_text = f"<b>Time:</b> {time}<br><b>Precision:</b> {precision}"
+                tooltip_text = f"<b>Position:</b> {position}<br><b>Time:</b> {time}<br><b>Precision:</b> {precision}"
                 folium.Marker(
                     location=(lat, lng),
-                    popup=popup_text,
+                    tooltip=tooltip_text,
                     icon=folium.Icon(color="red", icon="male", prefix="fa"),
                 ).add_to(map_object)
+                position += 1
         except Exception as e:
             print(f"Error procesando fila: {row} - {e}")
 
