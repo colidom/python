@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from utils.filesystem import get_csv_file, read_data, create_directories
 from utils.map import (
     initialize_map,
@@ -11,6 +12,7 @@ from utils.distance import calculate_distance
 
 
 def main():
+    load_dotenv()
     # Establecer el directorio de trabajo al directorio del script actual
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
@@ -27,10 +29,10 @@ def main():
 
     # Configuración de la zona segura y proximidad
     secured_area = (
-        37.5531099,
-        -3.63737,
-    )  # Coordenadas de la zona segura (punto de referencia)
-    proximity_distance = 200  # Distancia en metros
+        float(os.getenv("SECURED_AREA_LAT")),
+        float(os.getenv("SECURED_AREA_LNG")),
+    )
+    proximity_distance = int(os.getenv("PROXIMITY_DISTANCE"))
 
     # Flujo principal
     aggressor_csv_file = get_csv_file(
