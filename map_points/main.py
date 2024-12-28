@@ -8,7 +8,7 @@ from utils.map import (
     add_victim_zone,
     save_map,
 )
-from utils.distance import calculate_distance
+from utils.distance import calculate_distance, process_location
 
 
 def main():
@@ -50,28 +50,16 @@ def main():
 
     # Verificar la proximidad de la víctima con el agresor
     for _, victim_row in victim_data.iterrows():
-        location = victim_row["location"]
+        victim_coordinates = process_location(victim_row, location_column="location")
 
-        # Asegurarnos de que location sea una cadena
-        if isinstance(location, float):
-            print(
-                f"Valor inesperado en 'location' de la víctima: {location}. Ignorando fila."
-            )
-            continue  # Ignorar fila si location es un flotante
-
-        victim_lat, victim_lng = map(float, location.split(","))
+        if victim_coordinates:
+            victim_lat, victim_lng = victim_coordinates
 
         for _, aggressor_row in aggressor_data.iterrows():
-            aggressor_location = aggressor_row["location"]
+            aggressor_coordinates = process_location(aggressor_row, location_column="location")
 
-            # Asegurarnos de que location del agresor sea una cadena
-            if isinstance(aggressor_location, float):
-                print(
-                    f"Valor inesperado en 'location' del agresor: {aggressor_location}. Ignorando fila."
-                )
-                continue  # Ignorar fila si location es un flotante
-
-            aggressor_lat, aggressor_lng = map(float, aggressor_location.split(","))
+            if aggressor_coordinates:
+                aggressor_lat, aggressor_lng = aggressor_coordinates
 
             # Calcular la distancia entre la víctima y el agresor
             distance = calculate_distance(
