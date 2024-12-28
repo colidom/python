@@ -40,13 +40,13 @@ def main():
     aggressor_data = read_data(Aggressor_file)
     victim_data = read_data(Victim_file)
 
-    m = initialize_map(secured_area)
+    map_view = initialize_map(secured_area)
 
     # Añadir marcadores e iconos del agresor
-    add_aggressor_markers(m, aggressor_data, is_victim=False)
+    add_aggressor_markers(map_view, aggressor_data, is_victim=False)
 
     # Añadir la zona segura
-    add_safe_zone(m, secured_area, proximity_distance)
+    add_safe_zone(map_view, secured_area, proximity_distance)
 
     # Verificar la proximidad de la víctima con el agresor
     for _, victim_row in victim_data.iterrows():
@@ -79,9 +79,9 @@ def main():
             )
             # Si la víctima está a 200 metros o menos del agresor, se añade la zona de la víctima
             if distance <= proximity_distance:
-                add_victim_zone(m, (victim_lat, victim_lng), proximity_distance)
+                add_victim_zone(map_view, (victim_lat, victim_lng), proximity_distance)
 
-    save_map(m, result_folder, output_map)
+    save_map(map_view, result_folder, output_map)
 
 
 if __name__ == "__main__":
