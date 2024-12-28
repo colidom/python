@@ -50,28 +50,48 @@ def add_aggressor_markers(map_object, data, is_victim=True):
 
 
 def add_safe_zone(map_object, secured_area, proximity_distance):
-    """Agrega un marcador y un círculo de proximidad para la zona segura."""
+    """Agrega un marcador y un círculo de proximidad para la zona segura con información detallada."""
+    lat, lng = secured_area
+    tooltip_text = f"<b>Lon:</b> {lng}<br>" f"<b>Lat:</b> {lat}<br>"
+
+    # Agregar marcador para la zona segura
     folium.Marker(
         location=secured_area,
-        tooltip="Secured Area",
+        tooltip=tooltip_text,
         icon=folium.Icon(color="blue", icon="home", prefix="fa"),
     ).add_to(map_object)
 
+    # Agregar círculo para la zona de proximidad de la zona segura
     folium.Circle(
         location=secured_area,
         radius=proximity_distance,
         color="blue",
         fill=True,
         fill_opacity=0.2,
-        tooltip=f"Proximity Zone: {proximity_distance}m",
+        tooltip=f"Secured Area: {proximity_distance}m",
     ).add_to(map_object)
 
 
-def add_victim_zone(map_object, victim_location, proximity_distance):
-    """Agrega un círculo de proximidad y un marcador para la víctima cuando esté cerca del agresor."""
+def add_victim_zone(
+    map_object,
+    victim_location,
+    proximity_distance,
+    time="N/A",
+    precision="N/A",
+):
+    """Agrega un círculo de proximidad y un marcador para la víctima con información detallada."""
+    lat, lng = victim_location
+    tooltip_text = (
+        f"<b>Lon:</b> {lng}<br>"
+        f"<b>Lat:</b> {lat}<br>"
+        f"<b>Time:</b> {time}<br>"
+        f"<b>Precision:</b> {precision}"
+    )
+
+    # Agregar marcador para la ubicación de la víctima
     folium.Marker(
         location=victim_location,
-        tooltip="Victim's Location",
+        tooltip=tooltip_text,
         icon=folium.Icon(color="green", icon="female", prefix="fa"),
     ).add_to(map_object)
 
@@ -83,11 +103,6 @@ def add_victim_zone(map_object, victim_location, proximity_distance):
         fill_opacity=0.2,
         tooltip=f"Victim's Zone: {proximity_distance}m",
     ).add_to(map_object)
-
-
-def calculate_distance(coord1, coord2):
-    """Calcula la distancia en metros entre dos puntos usando geopy."""
-    return geodesic(coord1, coord2).meters
 
 
 def save_map(map_object, result_folder, output_file):

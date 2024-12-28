@@ -79,7 +79,15 @@ def main():
             )
             # Si la víctima está a 200 metros o menos del agresor, se añade la zona de la víctima
             if distance <= proximity_distance:
-                add_victim_zone(map_view, (victim_lat, victim_lng), proximity_distance)
+                time = victim_row.get("time", "N/A")
+                precision = victim_row.get("precision", "N/A")
+                add_victim_zone(
+                    map_view,
+                    (victim_lat, victim_lng),
+                    proximity_distance,
+                    time=time,
+                    precision=precision,
+                )
 
     save_map(map_view, result_folder, output_map)
 
