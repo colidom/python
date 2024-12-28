@@ -1,6 +1,13 @@
 import os
-from map_points.utils.filesystem import get_csv_file, read_data, create_directories
-from map_points.utils.map import initialize_map, add_markers, add_safe_zone, save_map
+from utils.filesystem import get_csv_file, read_data, create_directories
+from utils.map import (
+    initialize_map,
+    add_markers,
+    add_safe_zone,
+    add_victim_zone,
+    save_map,
+)
+from utils.distance import calculate_distance
 
 
 def main():
@@ -19,16 +26,63 @@ def main():
     create_directories([data_folder, result_folder])
 
     # Configuración de la zona segura y proximidad
-    secured_area = (37.5531099, -3.63737)
+    secured_area = (
+        37.5531099,
+        -3.63737,
+    )  # Coordenadas de la zona segura (punto de referencia)
     proximity_distance = 200  # Distancia en metros
 
     # Flujo principal
-    csv_file = get_csv_file(data_folder)
-    data = read_data(csv_file)
+    aggressor_csv_file = get_csv_file(
+        os.path.join(data_folder, "A")
+    )  # Carpeta del agresor
+    victim_csv_file = get_csv_file(
+        os.path.join(data_folder, "V")
+    )  # Carpeta de la víctima
+    aggressor_data = read_data(aggressor_csv_file)
+    victim_data = read_data(victim_csv_file)
 
     m = initialize_map(secured_area)
-    add_markers(m, data)
+
+    # Añadir marcadores e iconos del agresor
+    add_markers(m, aggressor_data, is_victim=False)
+
+    # Añadir la zona segura
     add_safe_zone(m, secured_area, proximity_distance)
+
+    # Verificar la proximidad de la víctima con el agresor
+    for _, victim_row in victim_data.iterrows():
+        location = victim_row["location"]
+
+        # Asegurarnos de que location sea una cadena
+        if isinstance(location, float):
+            print(
+                f"Valor inesperado en 'location' de la víctima: {location}. Ignorando fila."
+            )
+            continue  # Ignorar fila si location es un flotante
+
+        victim_lat, victim_lng = map(float, location.split(","))
+
+        for _, aggressor_row in aggressor_data.iterrows():
+            aggressor_location = aggressor_row["location"]
+
+            # Asegurarnos de que location del agresor sea una cadena
+            if isinstance(aggressor_location, float):
+                print(
+                    f"Valor inesperado en 'location' del agresor: {aggressor_location}. Ignorando fila."
+                )
+                continue  # Ignorar fila si location es un flotante
+
+            aggressor_lat, aggressor_lng = map(float, aggressor_location.split(","))
+
+            # Calcular la distancia entre la víctima y el agresor
+            distance = calculate_distance(
+                (victim_lat, victim_lng), (aggressor_lat, aggressor_lng)
+            )
+            # Si la víctima está a 200 metros o menos del agresor, se añade la zona de la víctima
+            if distance <= proximity_distance:
+                add_victim_zone(m, (victim_lat, victim_lng), proximity_distance)
+
     save_map(m, result_folder, output_map)
 
 
