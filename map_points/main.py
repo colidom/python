@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from utils.filesystem import get_csv_file, read_data, create_directories
 from utils.map import (
     initialize_map,
-    add_markers,
+    add_aggressor_markers,
     add_safe_zone,
     add_victim_zone,
     save_map,
@@ -35,19 +35,15 @@ def main():
     proximity_distance = int(os.getenv("PROXIMITY_DISTANCE"))
 
     # Flujo principal
-    aggressor_csv_file = get_csv_file(
-        os.path.join(data_folder, "A")
-    )  # Carpeta del agresor
-    victim_csv_file = get_csv_file(
-        os.path.join(data_folder, "V")
-    )  # Carpeta de la víctima
-    aggressor_data = read_data(aggressor_csv_file)
-    victim_data = read_data(victim_csv_file)
+    A_csv_file = get_csv_file(os.path.join(data_folder, "A"))  # Carpeta del agresor
+    V_csv_file = get_csv_file(os.path.join(data_folder, "V"))  # Carpeta de la víctima
+    aggressor_data = read_data(A_csv_file)
+    victim_data = read_data(V_csv_file)
 
     m = initialize_map(secured_area)
 
     # Añadir marcadores e iconos del agresor
-    add_markers(m, aggressor_data, is_victim=False)
+    add_aggressor_markers(m, aggressor_data, is_victim=False)
 
     # Añadir la zona segura
     add_safe_zone(m, secured_area, proximity_distance)

@@ -8,7 +8,7 @@ def initialize_map(center, zoom_start=15):
     return folium.Map(location=center, zoom_start=zoom_start)
 
 
-def add_markers(map_object, data, is_victim=True):
+def add_aggressor_markers(map_object, data, is_victim=True):
     """Agrega marcadores al mapa a partir de los datos proporcionados."""
     position = 1  # Empezamos en la posición 1
     for _, row in data.iterrows():
@@ -31,7 +31,7 @@ def add_markers(map_object, data, is_victim=True):
             time = row.get("time", "N/A")
 
             if lat != 0.0 and lng != 0.0:
-                tooltip_text = f"<b>Position:</b> {position}<br><b>Time:</b> {time}<br><b>Precision:</b> {precision}"
+                tooltip_text = f"<b>Position:</b> {position}<br><b>Lon:</b> {lng}<br><b>Lat:</b> {lat}</br><b>Time:</b> {time}<br><b>Precision:</b> {precision}"
                 icon_color = (
                     "green" if is_victim else "red"
                 )  # Cambiar color según si es víctima o agresor
