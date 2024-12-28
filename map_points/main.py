@@ -35,10 +35,10 @@ def main():
     proximity_distance = int(os.getenv("PROXIMITY_DISTANCE"))
 
     # Flujo principal
-    A_csv_file = get_csv_file(os.path.join(data_folder, "A"))  # Carpeta del agresor
-    V_csv_file = get_csv_file(os.path.join(data_folder, "V"))  # Carpeta de la víctima
-    aggressor_data = read_data(A_csv_file)
-    victim_data = read_data(V_csv_file)
+    Aggressor_file = get_csv_file(os.path.join(data_folder, "A"))  # Carpeta del agresor
+    Victim_file = get_csv_file(os.path.join(data_folder, "V"))  # Carpeta de la víctima
+    aggressor_data = read_data(Aggressor_file)
+    victim_data = read_data(Victim_file)
 
     m = initialize_map(secured_area)
 
